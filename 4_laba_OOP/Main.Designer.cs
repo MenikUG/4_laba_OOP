@@ -134,6 +134,7 @@
             this.button_del__item_storage.TabIndex = 6;
             this.button_del__item_storage.Text = "Удалить выделенные элементы из хранилища";
             this.button_del__item_storage.UseVisualStyleBackColor = true;
+            this.button_del__item_storage.Click += new System.EventHandler(this.button_del__item_storage_Click);
             // 
             // Main
             // 
@@ -149,6 +150,7 @@
             this.Controls.Add(this.paint_box);
             this.Name = "Main";
             this.Text = "Laba 4 OOP";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_KeyDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Main_MouseMove);
             this.paint_box.ResumeLayout(false);
             this.paint_box.PerformLayout();
