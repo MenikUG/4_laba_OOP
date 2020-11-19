@@ -150,7 +150,6 @@
             this.Controls.Add(this.paint_box);
             this.Name = "Main";
             this.Text = "Laba 4 OOP";
-            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.Main_KeyDown);
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Main_MouseMove);
             this.paint_box.ResumeLayout(false);
             this.paint_box.PerformLayout();

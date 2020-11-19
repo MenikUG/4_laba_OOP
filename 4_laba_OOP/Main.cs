@@ -21,7 +21,7 @@ namespace _4_laba_OOP
         {
             public int x, y; // Координаты круга
             public int rad = 15; // Радиус круга
-            public Color color = Color.Navy;
+            public Color color = Color.Navy; // Выделен ли элемент
             public Circle()
             {
                 x = 0;
@@ -49,8 +49,11 @@ namespace _4_laba_OOP
             // Объявляем объект - карандаш, которым будем рисовать контур
             if (!storag.check_empty(index))
             {
-                paint_box.CreateGraphics().DrawEllipse(pen, stg.objects[index].x,
-                stg.objects[index].y, stg.objects[index].rad * 2,
+                paint_box.CreateGraphics().DrawEllipse(
+                pen, 
+                stg.objects[index].x,
+                stg.objects[index].y,
+                stg.objects[index].rad * 2,
                 stg.objects[index].rad * 2);
                 stg.objects[index].color = name;
             }
@@ -67,7 +70,7 @@ namespace _4_laba_OOP
         }
 
         private void remove_selected_circle(ref Storage stg)
-        {
+        {   // Удаляет выделенные элементы из хранилища
             for (int i = 0; i < k; ++i)
             {
                 if (!storag.check_empty(i))
@@ -84,37 +87,47 @@ namespace _4_laba_OOP
             label_x.Text = "";
             label_y.Text = "";
         }
+
+
         int p = 0; // Нажат ли был ранее Ctrl
-        static int k = 20; // Кол-во ячеек в хранилище
+        static int k = 5; // Кол-во ячеек в хранилище
         Storage storag = new Storage(k); // Создаем объект хранилища
         static int index = 0; // Индекс в хранилище
+
         private void paint_box_MouseClick(object sender, MouseEventArgs e)
         {
             Circle krug = new Circle(e.X, e.Y);
             if (index == k)
                 storag.doubleSize(ref k);
-            int c = check_circle(ref storag, k, krug.x, krug.y); // Выбранный элемент
+            // Проверка на наличие круга на данных координатах
+            int c = check_circle(ref storag, k, krug.x, krug.y);
             if (c != -1)
             {   // Если на этом месте уже нарисован круг
                 if (Control.ModifierKeys == Keys.Control)  
-                {   // Если нажат ctrl, то выделяем выделяем несколько объектов
+                {   // Если нажат ctrl, то выделяем несколько объектов
                     if (p == 0)
                     {
                         paint_circle(Color.Navy, ref storag, index - 1);
                         p = 1;
                     }
-                    paint_circle(Color.Red, ref storag, c); // Вызываем функцию отрисовки круга
+                    // Вызываем функцию отрисовки круга
+                    paint_circle(Color.Red, ref storag, c);
                 }
                 else
                 {   // Иначе выделяем только один объект
-                    remove_selection_circle(ref storag); // Снимаем выделение у всех объектов хранилища
-                    paint_circle(Color.Red, ref storag, c); // Вызываем функцию отрисовки круга
+                    // Снимаем выделение у всех объектов хранилища
+                    remove_selection_circle(ref storag);
+                    // Вызываем функцию отрисовки круга
+                    paint_circle(Color.Red, ref storag, c);
                 }
                 return;
             }
-            storag.add_object(index, ref krug, k); // Добавляем круг в хранилище          
-            remove_selection_circle(ref storag); // Снимаем выделение у всех объектов хранилища
-            paint_circle(Color.Red, ref storag, index); // Вызываем функцию отрисовки круга
+            // Добавляем круг в хранилище   
+            storag.add_object(index, ref krug, k);
+            // Снимаем выделение у всех объектов хранилища
+            remove_selection_circle(ref storag);
+            // Вызываем функцию отрисовки круга
+            paint_circle(Color.Red, ref storag, index);
             label_paintbox.Visible = false;
             ++index;
             p = 0;
@@ -133,7 +146,8 @@ namespace _4_laba_OOP
                         int y1 = stg.objects[i].y - 15;
                         int y2 = stg.objects[i].y + 15;
 
-                        if ((x1 <= x && x <= x2) && (y1 <= y && y <= y2)) // Если круг есть, возвращет индекс круга в хранилище
+                        // Если круг есть, возвращет индекс круга в хранилище
+                        if ((x1 <= x && x <= x2) && (y1 <= y && y <= y2)) 
                             return i;
                     }
                 }
@@ -153,6 +167,7 @@ namespace _4_laba_OOP
 
             public Storage(int count)
             {   // Конструктор по умолчанию 
+                // Выделяем count мест в хранилище
                 objects = new Circle[count];
                 for (int i = 0; i < count; ++i)
                     objects[i] = null;
@@ -166,6 +181,7 @@ namespace _4_laba_OOP
 
             public void add_object(int ind, ref Circle object1, int count)
             {   // Добавляет ячейку в хранилище
+                // Если ячейка занята ищем свободное место
                 while (objects[ind] != null)
                 {
                     ind = (ind + 1) % count;                   
@@ -218,16 +234,15 @@ namespace _4_laba_OOP
             if (storag.occupied(k) != 0)
             {
                 label_paintbox.Visible = false;
-                for (int i = 0; i < index; ++i)
+                for (int i = 0; i < k; ++i)
                 {
-                    paint_circle(Color.Navy, ref storag, i);                    
+                    paint_circle(Color.Navy, ref storag, i);
                 }
             }
         }
 
         private void button_deletestorage_Click(object sender, EventArgs e)
         {   // Удалить все круги из хранилища
-           // storag.delete_object(i);
             for (int i = 0; i < index; ++i)
             {
                 storag.objects[i] = null;
@@ -235,17 +250,9 @@ namespace _4_laba_OOP
             index = 0;
         }
 
-        private void Main_KeyDown(object sender, KeyEventArgs e)
-        {
-            if (e.KeyData == Keys.Delete)
-            {
-                remove_selected_circle(ref storag);
-            }
-        }
-
         private void button_del__item_storage_Click(object sender, EventArgs e)
-        {
-            remove_selected_circle(ref storag);            
+        {   // Обработчик на удаление выделенных элементов из хранилища
+            remove_selected_circle(ref storag);
         }
     }
 
