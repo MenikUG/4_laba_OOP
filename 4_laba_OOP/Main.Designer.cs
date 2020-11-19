@@ -33,6 +33,7 @@
             this.label_x = new System.Windows.Forms.Label();
             this.label_y = new System.Windows.Forms.Label();
             this.button_clear_paintbox = new System.Windows.Forms.Button();
+            this.button_show = new System.Windows.Forms.Button();
             this.paint_box.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -97,11 +98,24 @@
             this.button_clear_paintbox.UseVisualStyleBackColor = true;
             this.button_clear_paintbox.Click += new System.EventHandler(this.button_clear_paintbox_Click);
             // 
+            // button_show
+            // 
+            this.button_show.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_show.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button_show.Location = new System.Drawing.Point(628, 71);
+            this.button_show.Name = "button_show";
+            this.button_show.Size = new System.Drawing.Size(179, 97);
+            this.button_show.TabIndex = 4;
+            this.button_show.Text = "Отобразить объекты из хранилища";
+            this.button_show.UseVisualStyleBackColor = true;
+            this.button_show.Click += new System.EventHandler(this.button_show_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(819, 462);
+            this.Controls.Add(this.button_show);
             this.Controls.Add(this.button_clear_paintbox);
             this.Controls.Add(this.label_y);
             this.Controls.Add(this.label_x);
@@ -123,6 +137,7 @@
         private System.Windows.Forms.Label label_x;
         private System.Windows.Forms.Label label_y;
         private System.Windows.Forms.Button button_clear_paintbox;
+        private System.Windows.Forms.Button button_show;
     }
 }
 
