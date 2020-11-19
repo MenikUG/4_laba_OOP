@@ -40,6 +40,23 @@ namespace _4_laba_OOP
             label_y.Text = "Координаты Y: " + e.Y.ToString();
         }
 
+        private void paint_circle(Color name, ref Storage stg, int index)
+        {   // Рисует круг на панели            
+            Pen pen = new Pen(name, 3); // Объявляем объект - карандаш, которым будем рисовать контур
+            paint_box.CreateGraphics().DrawEllipse(pen, stg.objects[index].x, stg.objects[index].y, stg.objects[index].rad * 2, stg.objects[index].rad * 2);
+        }
+
+        private void remove_selection_circle(ref Storage stg)
+        {
+            for (int i = 0; i < k; ++i)
+            {
+                if (!storag.check_empty(i))
+                    paint_circle(Color.Navy, ref storag, i); // Вызываем функцию отрисовки круга
+            }
+        }
+
+
+
         private void Main_MouseMove(object sender, MouseEventArgs e)
         {
             label_x.Text = "";
@@ -48,37 +65,74 @@ namespace _4_laba_OOP
 
         static int k = 20; // Кол-во ячеек в хранилище
         Storage storag = new Storage(k); // Создаем объект хранилища
-        int index = 0;
+        int index = 0; // Индекс в хранилище
         private void paint_box_MouseClick(object sender, MouseEventArgs e)
         {
-            Pen pen = new Pen(Color.Red, 3); // Объявляем объект - карандаш, которым будем рисовать контур
+            Pen pen1 = new Pen(Color.Navy, 3); // Цвет Navy
             Circle krug = new Circle(e.X, e.Y);
             if (index == k)
                 storag.doubleSize(ref k);
-            storag.add_object(index, ref krug, k);
-            paint_box.CreateGraphics().DrawEllipse(pen, krug.x, krug.y, krug.rad * 2, krug.rad * 2); // По заданным координатам рисуем круг
+            int c = check_circle(ref storag, k, krug.x, krug.y); // Выбранный элемент
+            if (c != -1)
+            {   // Если на этом месте уже нарисован круг
+                if (Control.ModifierKeys == Keys.Control)  
+                {   // Если нажат ctrl, то выделяем выделяем несколько объектов
+                    paint_circle(Color.Red, ref storag, c); // Вызываем функцию отрисовки круга
+                }
+                else
+                {   // Иначе выделяем только один объект
+                    remove_selection_circle(ref storag); // Снимаем выделение у всех объектов хранилища
+                    paint_circle(Color.Red, ref storag, c); // Вызываем функцию отрисовки круга
+                }
+                return;
+            }
+            storag.add_object(index, ref krug, k); // Добавляем круг в хранилище          
+            remove_selection_circle(ref storag); // Снимаем выделение у всех объектов хранилища
+            paint_circle(Color.Red, ref storag, index); // Вызываем функцию отрисовки круга
             label_paintbox.Visible = false;
             ++index;
         }
 
+        private int check_circle(ref Storage stg, int size, int x, int y)
+        {   // Проверяет есть ли уже круг с такими же координатами в хранилище
+            if (stg.occupied(size) != 0)
+            {
+                for (int i = 0; i < size; ++i)
+                {
+                    if (!stg.check_empty(i))
+                    {
+                        int x1 = stg.objects[i].x - 15;
+                        int x2 = stg.objects[i].x + 15;
+                        int y1 = stg.objects[i].y - 15;
+                        int y2 = stg.objects[i].y + 15;
+
+                        if ((x1 <= x && x <= x2) && (y1 <= y && y <= y2))
+                            return i;
+                    }
+                }
+            }
+            return -1;
+        }
+
         private void button_clear_paintbox_Click(object sender, EventArgs e)
-        {
-            paint_box.Invalidate();
+        {   // Очищает панель от кругов
+            paint_box.Invalidate(); // Перерисовывем панель paint_box
             label_paintbox.Visible = true;
         }
+
 
         class Storage
         {
             public Circle[] objects;
 
-            public Storage(int count) // Конструктор по умолчанию
-            {
+            public Storage(int count)
+            {   // Конструктор по умолчанию 
                 objects = new Circle[count];
                 for (int i = 0; i < count; ++i)
                     objects[i] = null;
             }
-            public void initialisat(int count) // Выделяем count мест в хранилище
-            {
+            public void initialisat(int count)
+            {   // Выделяем count мест в хранилище
                 objects = new Circle[count];
                 for (int i = 0; i < count; ++i)
                     objects[i] = null;
@@ -138,21 +192,24 @@ namespace _4_laba_OOP
             ~Storage() { }
         };
 
+
+
         private void button_show_Click(object sender, EventArgs e)
-        {
+        {   // Отобразить все круги из хранилища
             if (storag.occupied(k) != 0)
             {
-                Pen pen = new Pen(Color.Red, 3); // Объявляем объект - карандаш, которым будем рисовать контур
                 label_paintbox.Visible = false;
                 for (int i = 0; i < index; ++i)
                 {
-                    paint_box.CreateGraphics().DrawEllipse(pen, storag.objects[i].x, storag.objects[i].y, storag.objects[i].rad * 2, storag.objects[i].rad * 2);
+                    paint_circle(Color.Navy, ref storag, i);                    
                 }
             }
         }
 
         private void button_deletestorage_Click(object sender, EventArgs e)
-        {
+        {   // Удалить все круги из хранилища
+           // storag.delete_object(i);
+
             for (int i = 0; i < index; ++i)
             {
                 storag.objects[i] = null;
@@ -160,10 +217,6 @@ namespace _4_laba_OOP
             index = 0;
         }
 
-        private void button1_Click(object sender, EventArgs e)
-        {
-            
-        }
     }
 
 }

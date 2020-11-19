@@ -35,7 +35,7 @@
             this.button_clear_paintbox = new System.Windows.Forms.Button();
             this.button_show = new System.Windows.Forms.Button();
             this.button_deletestorage = new System.Windows.Forms.Button();
-            this.button1 = new System.Windows.Forms.Button();
+            this.button_del__item_storage = new System.Windows.Forms.Button();
             this.paint_box.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -124,24 +124,23 @@
             this.button_deletestorage.UseVisualStyleBackColor = true;
             this.button_deletestorage.Click += new System.EventHandler(this.button_deletestorage_Click);
             // 
-            // button1
+            // button_del__item_storage
             // 
-            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
-            this.button1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button1.Location = new System.Drawing.Point(628, 174);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(179, 120);
-            this.button1.TabIndex = 6;
-            this.button1.Text = "Удалить выделенные элементы из хранилища";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.button_del__item_storage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_del__item_storage.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button_del__item_storage.Location = new System.Drawing.Point(628, 174);
+            this.button_del__item_storage.Name = "button_del__item_storage";
+            this.button_del__item_storage.Size = new System.Drawing.Size(179, 120);
+            this.button_del__item_storage.TabIndex = 6;
+            this.button_del__item_storage.Text = "Удалить выделенные элементы из хранилища";
+            this.button_del__item_storage.UseVisualStyleBackColor = true;
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(819, 462);
-            this.Controls.Add(this.button1);
+            this.Controls.Add(this.button_del__item_storage);
             this.Controls.Add(this.button_clear_paintbox);
             this.Controls.Add(this.button_deletestorage);
             this.Controls.Add(this.button_show);
@@ -149,7 +148,7 @@
             this.Controls.Add(this.label_x);
             this.Controls.Add(this.paint_box);
             this.Name = "Main";
-            this.Text = "Form1";
+            this.Text = "Laba 4 OOP";
             this.MouseMove += new System.Windows.Forms.MouseEventHandler(this.Main_MouseMove);
             this.paint_box.ResumeLayout(false);
             this.paint_box.PerformLayout();
@@ -167,7 +166,7 @@
         private System.Windows.Forms.Button button_clear_paintbox;
         private System.Windows.Forms.Button button_show;
         private System.Windows.Forms.Button button_deletestorage;
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button button_del__item_storage;
     }
 }
 
