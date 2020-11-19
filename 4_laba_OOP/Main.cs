@@ -46,7 +46,7 @@ namespace _4_laba_OOP
             label_y.Text = "";
         }
 
-        static int k = 5; // Кол-во ячеек в хранилище
+        static int k = 20; // Кол-во ячеек в хранилище
         Storage storag = new Storage(k); // Создаем объект хранилища
         int index = 0;
         private void paint_box_MouseClick(object sender, MouseEventArgs e)
@@ -55,7 +55,7 @@ namespace _4_laba_OOP
             Circle krug = new Circle(e.X, e.Y);
             if (index == k)
                 storag.doubleSize(ref k);
-            storag.add_object(index, ref krug);
+            storag.add_object(index, ref krug, k);
             paint_box.CreateGraphics().DrawEllipse(pen, krug.x, krug.y, krug.rad * 2, krug.rad * 2); // По заданным координатам рисуем круг
             label_paintbox.Visible = false;
             ++index;
@@ -71,38 +71,48 @@ namespace _4_laba_OOP
         {
             public Circle[] objects;
 
-            public Storage(int count)
+            public Storage(int count) // Конструктор по умолчанию
             {
                 objects = new Circle[count];
                 for (int i = 0; i < count; ++i)
                     objects[i] = null;
             }
-            public void initialisat(int count)
+            public void initialisat(int count) // Выделяем count мест в хранилище
             {
                 objects = new Circle[count];
                 for (int i = 0; i < count; ++i)
                     objects[i] = null;
             }
 
-            public void add_object(int index, ref Circle object1)
-            {
-                objects[index] = object1;
+            public void add_object(int index, ref Circle object1, int count)
+            {   // Добавляет ячейку в хранилище
+                if (check_empty(index)) // Если ячейка пуста, добавляет объект
+                    objects[index] = object1;
+                else
+                {   // Иначе ищет свободное место
+                    while (objects[index] != null)
+                    {
+                        index = (index + 1) % count;
+                    }
+                    objects[index] = object1;
+                }
             }
 
-            public void delete_object(int index)
-            {
+            public void delete_object(ref int index)
+            {   // Удаляет объект из хранилища
                 objects[index] = null;
+                index--;
             }
 
             public bool check_empty(int index)
-            {
+            {   // Проверяет занято ли место хранилище
                 if (objects[index] == null)
                     return true;
                 else return false;
             }
 
             public int occupied(int size)
-            {
+            { // Определяет кол-во занятых мест в хранилище
                 int count_occupied = 0;
                 for (int i = 0; i < size; ++i)
                     if (!check_empty(i))
@@ -125,32 +135,34 @@ namespace _4_laba_OOP
                     objects[i] = storage1.objects[i];
             }
 
-            //public void doubleSize(ref Storage storage, ref int size)
-            //{   // Функция для увеличения кол-ва элементов в хранилище в 2 раза 
-            //    Storage storage1 = new Storage(size * 2);
-            //    for (int i = 0; i < size; ++i)
-            //        storage1.objects[i] = storage.objects[i];
-            //    for (int i = size; i < (size * 2) - 1; ++i)
-            //    {
-            //        storage1.objects[i] = null;
-            //    }
-            //    size = size * 2;
-            //    storage.initialisat(size);
-            //    for (int i = 0; i < size; ++i)
-            //        storage.objects[i] = storage1.objects[i];
-            //}
-
             ~Storage() { }
         };
 
         private void button_show_Click(object sender, EventArgs e)
         {
-            Pen pen = new Pen(Color.Red, 3); // Объявляем объект - карандаш, которым будем рисовать контур
-            label_paintbox.Visible = false;
+            if (storag.occupied(k) != 0)
+            {
+                Pen pen = new Pen(Color.Red, 3); // Объявляем объект - карандаш, которым будем рисовать контур
+                label_paintbox.Visible = false;
+                for (int i = 0; i < index; ++i)
+                {
+                    paint_box.CreateGraphics().DrawEllipse(pen, storag.objects[i].x, storag.objects[i].y, storag.objects[i].rad * 2, storag.objects[i].rad * 2);
+                }
+            }
+        }
+
+        private void button_deletestorage_Click(object sender, EventArgs e)
+        {
             for (int i = 0; i < index; ++i)
             {
-                paint_box.CreateGraphics().DrawEllipse(pen, storag.objects[i].x, storag.objects[i].y, storag.objects[i].rad * 2, storag.objects[i].rad * 2);
+                storag.objects[i] = null;
             }
+            index = 0;
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            
         }
     }
 

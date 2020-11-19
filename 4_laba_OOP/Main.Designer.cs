@@ -34,6 +34,8 @@
             this.label_y = new System.Windows.Forms.Label();
             this.button_clear_paintbox = new System.Windows.Forms.Button();
             this.button_show = new System.Windows.Forms.Button();
+            this.button_deletestorage = new System.Windows.Forms.Button();
+            this.button1 = new System.Windows.Forms.Button();
             this.paint_box.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -90,7 +92,7 @@
             // 
             this.button_clear_paintbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button_clear_paintbox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button_clear_paintbox.Location = new System.Drawing.Point(628, 394);
+            this.button_clear_paintbox.Location = new System.Drawing.Point(628, 403);
             this.button_clear_paintbox.Name = "button_clear_paintbox";
             this.button_clear_paintbox.Size = new System.Drawing.Size(179, 56);
             this.button_clear_paintbox.TabIndex = 3;
@@ -110,13 +112,39 @@
             this.button_show.UseVisualStyleBackColor = true;
             this.button_show.Click += new System.EventHandler(this.button_show_Click);
             // 
+            // button_deletestorage
+            // 
+            this.button_deletestorage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_deletestorage.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button_deletestorage.Location = new System.Drawing.Point(628, 300);
+            this.button_deletestorage.Name = "button_deletestorage";
+            this.button_deletestorage.Size = new System.Drawing.Size(179, 97);
+            this.button_deletestorage.TabIndex = 5;
+            this.button_deletestorage.Text = "Удалить все элементы из хранилища";
+            this.button_deletestorage.UseVisualStyleBackColor = true;
+            this.button_deletestorage.Click += new System.EventHandler(this.button_deletestorage_Click);
+            // 
+            // button1
+            // 
+            this.button1.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button1.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button1.Location = new System.Drawing.Point(628, 174);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(179, 120);
+            this.button1.TabIndex = 6;
+            this.button1.Text = "Удалить выделенные элементы из хранилища";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(819, 462);
-            this.Controls.Add(this.button_show);
+            this.Controls.Add(this.button1);
             this.Controls.Add(this.button_clear_paintbox);
+            this.Controls.Add(this.button_deletestorage);
+            this.Controls.Add(this.button_show);
             this.Controls.Add(this.label_y);
             this.Controls.Add(this.label_x);
             this.Controls.Add(this.paint_box);
@@ -138,6 +166,8 @@
         private System.Windows.Forms.Label label_y;
         private System.Windows.Forms.Button button_clear_paintbox;
         private System.Windows.Forms.Button button_show;
+        private System.Windows.Forms.Button button_deletestorage;
+        private System.Windows.Forms.Button button1;
     }
 }
 
