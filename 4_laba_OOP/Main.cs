@@ -19,8 +19,8 @@ namespace _4_laba_OOP
 
         class circle
         {
-            public int x, y;
-            public int rad = 15;
+            public int x, y; // Координаты круга
+            public int rad = 15; // Радиус круга
             public circle()
             {
                 x = 0;
@@ -34,12 +34,6 @@ namespace _4_laba_OOP
 
         }
 
-        private void Main_MouseClick(object sender, MouseEventArgs e)
-        {
-            Pen pen = new Pen(Color.Red, 3);
-            circle krug = new circle(e.X, e.Y);          
-            CreateGraphics().DrawEllipse(pen, krug.x, krug.y, krug.rad*2, krug.rad*2);
-        }
 
         private void paint_box_MouseMove(object sender, MouseEventArgs e)
         {
@@ -53,12 +47,20 @@ namespace _4_laba_OOP
             label_y.Text = "";
         }
 
+        private void paint_box_MouseClick(object sender, MouseEventArgs e)
+        {
+            Pen pen = new Pen(Color.Red, 3); // Объявляем объект - карандаш, которым будем рисовать контур
+            circle krug = new circle(e.X, e.Y);
+            paint_box.CreateGraphics().DrawEllipse(pen, krug.x, krug.y, krug.rad * 2, krug.rad * 2);
+            label_paintbox.Visible = false;
+            
+        }
 
-
-
-
-
-
+        private void button_clear_paintbox_Click(object sender, EventArgs e)
+        {
+            paint_box.Invalidate();
+            label_paintbox.Visible = true;
+        }
     }
 
     }

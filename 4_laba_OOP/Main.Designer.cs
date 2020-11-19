@@ -32,6 +32,7 @@
             this.label_paintbox = new System.Windows.Forms.Label();
             this.label_x = new System.Windows.Forms.Label();
             this.label_y = new System.Windows.Forms.Label();
+            this.button_clear_paintbox = new System.Windows.Forms.Button();
             this.paint_box.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -47,6 +48,7 @@
             this.paint_box.Name = "paint_box";
             this.paint_box.Size = new System.Drawing.Size(605, 438);
             this.paint_box.TabIndex = 0;
+            this.paint_box.MouseClick += new System.Windows.Forms.MouseEventHandler(this.paint_box_MouseClick);
             this.paint_box.MouseMove += new System.Windows.Forms.MouseEventHandler(this.paint_box_MouseMove);
             // 
             // label_paintbox
@@ -83,11 +85,24 @@
             this.label_y.TabIndex = 2;
             this.label_y.Text = "Координаты Y: ";
             // 
+            // button_clear_paintbox
+            // 
+            this.button_clear_paintbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
+            this.button_clear_paintbox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
+            this.button_clear_paintbox.Location = new System.Drawing.Point(628, 394);
+            this.button_clear_paintbox.Name = "button_clear_paintbox";
+            this.button_clear_paintbox.Size = new System.Drawing.Size(179, 56);
+            this.button_clear_paintbox.TabIndex = 3;
+            this.button_clear_paintbox.Text = "Очистить панель";
+            this.button_clear_paintbox.UseVisualStyleBackColor = true;
+            this.button_clear_paintbox.Click += new System.EventHandler(this.button_clear_paintbox_Click);
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(819, 462);
+            this.Controls.Add(this.button_clear_paintbox);
             this.Controls.Add(this.label_y);
             this.Controls.Add(this.label_x);
             this.Controls.Add(this.paint_box);
@@ -107,6 +122,7 @@
         private System.Windows.Forms.Label label_paintbox;
         private System.Windows.Forms.Label label_x;
         private System.Windows.Forms.Label label_y;
+        private System.Windows.Forms.Button button_clear_paintbox;
     }
 }
 
