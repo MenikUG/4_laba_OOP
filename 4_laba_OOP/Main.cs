@@ -164,7 +164,7 @@ namespace _4_laba_OOP
 
         private void button_clear_paintbox_Click(object sender, EventArgs e)
         {   // Очищает панель от кругов
-            paint_box.Invalidate(); // Перерисовывем панель paint_box
+            paint_box.Refresh(); // Перерисовывем панель paint_box
             label_paintbox.Visible = true;
             for(int i = 0; i < k; ++i)
             {
@@ -245,6 +245,7 @@ namespace _4_laba_OOP
 
         private void button_show_Click(object sender, EventArgs e)
         {   // Отобразить все круги из хранилища
+            paint_box.Refresh();
             if (storag.occupied(k) != 0)
             {
                 label_paintbox.Visible = false;
@@ -272,6 +273,14 @@ namespace _4_laba_OOP
         private void button_del__item_storage_Click(object sender, EventArgs e)
         {   // Обработчик на удаление выделенных элементов из хранилища
             remove_selected_circle(ref storag);
+            paint_box.Refresh();
+            if (storag.occupied(k) != 0)
+            {
+                for (int i = 0; i < k; ++i)
+                {
+                    paint_circle(Color.Navy, ref storag, i);
+                }
+            }
         }
     }
 

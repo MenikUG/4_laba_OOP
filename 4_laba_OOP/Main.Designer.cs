@@ -49,7 +49,7 @@
             this.paint_box.Controls.Add(this.label_paintbox);
             this.paint_box.Location = new System.Drawing.Point(12, 12);
             this.paint_box.Name = "paint_box";
-            this.paint_box.Size = new System.Drawing.Size(605, 438);
+            this.paint_box.Size = new System.Drawing.Size(605, 477);
             this.paint_box.TabIndex = 0;
             this.paint_box.MouseClick += new System.Windows.Forms.MouseEventHandler(this.paint_box_MouseClick);
             this.paint_box.MouseMove += new System.Windows.Forms.MouseEventHandler(this.paint_box_MouseMove);
@@ -92,7 +92,7 @@
             // 
             this.button_clear_paintbox.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button_clear_paintbox.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button_clear_paintbox.Location = new System.Drawing.Point(628, 403);
+            this.button_clear_paintbox.Location = new System.Drawing.Point(628, 433);
             this.button_clear_paintbox.Name = "button_clear_paintbox";
             this.button_clear_paintbox.Size = new System.Drawing.Size(179, 56);
             this.button_clear_paintbox.TabIndex = 3;
@@ -116,7 +116,7 @@
             // 
             this.button_deletestorage.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Bottom | System.Windows.Forms.AnchorStyles.Right)));
             this.button_deletestorage.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
-            this.button_deletestorage.Location = new System.Drawing.Point(628, 300);
+            this.button_deletestorage.Location = new System.Drawing.Point(628, 330);
             this.button_deletestorage.Name = "button_deletestorage";
             this.button_deletestorage.Size = new System.Drawing.Size(179, 97);
             this.button_deletestorage.TabIndex = 5;
@@ -130,9 +130,9 @@
             this.button_del__item_storage.Font = new System.Drawing.Font("Segoe UI", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(204)));
             this.button_del__item_storage.Location = new System.Drawing.Point(628, 174);
             this.button_del__item_storage.Name = "button_del__item_storage";
-            this.button_del__item_storage.Size = new System.Drawing.Size(179, 120);
+            this.button_del__item_storage.Size = new System.Drawing.Size(179, 150);
             this.button_del__item_storage.TabIndex = 6;
-            this.button_del__item_storage.Text = "Удалить выделенные элементы из хранилища";
+            this.button_del__item_storage.Text = "Удалить выделенные элементы из хранилища и панели";
             this.button_del__item_storage.UseVisualStyleBackColor = true;
             this.button_del__item_storage.Click += new System.EventHandler(this.button_del__item_storage_Click);
             // 
@@ -140,7 +140,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(819, 462);
+            this.ClientSize = new System.Drawing.Size(819, 501);
             this.Controls.Add(this.button_del__item_storage);
             this.Controls.Add(this.button_clear_paintbox);
             this.Controls.Add(this.button_deletestorage);
